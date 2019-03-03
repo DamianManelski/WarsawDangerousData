@@ -1,5 +1,3 @@
-using System;
-
 namespace WarsawDengerousData.Models
 {
     public class ErrorViewModel
