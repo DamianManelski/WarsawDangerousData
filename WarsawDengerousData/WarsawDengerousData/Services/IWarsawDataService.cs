@@ -1,7 +1,10 @@
-﻿namespace WarsawDengerousData.Services
+﻿using System.Threading.Tasks;
+using WarsawDengerousData.Services.DataModels;
+
+namespace WarsawDengerousData.Services
 {
-    internal interface IWarsawDataService
+    public interface IWarsawDataService
     {
-        object GetIncydentFor();
+        Task<WarsawData> GetIncydentForAsync(string districtName, string resourceId);
     }
 }

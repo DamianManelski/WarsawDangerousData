@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WarsawDengerousData.Exceptions;
+using WarsawDengerousData.Services;
 
 namespace WarsawDengerousData.WarsawApi
 {
@@ -31,12 +32,12 @@ namespace WarsawDengerousData.WarsawApi
                     client.BaseAddress = new Uri(BaseUrl);
                     var httpRequest = CreateHttpRequestMessage(apiCall);
                     var httpResponse = await client.SendAsync(httpRequest);
-                    await AssertHasSuccessStatusCode(httpResponse, apiCall);
+                    AssertHasSuccessStatusCode(httpResponse, apiCall);
 
                     var responseContents = await httpResponse.Content.ReadAsStringAsync();
                     if (responseContents != null)
                     {
-                        return JsonConvert.DeserializeObject<TResult>(responseContents);
+                        return (TResult)WarsawDataSerializator.FromJson(responseContents);
                     }
 
                     return default(TResult);
@@ -48,9 +49,15 @@ namespace WarsawDengerousData.WarsawApi
             }
         }
 
-        private Task AssertHasSuccessStatusCode<TResult>(object httpResponse, IWarsawApiMethod<TResult> apiCall)
+        private void AssertHasSuccessStatusCode(HttpResponseMessage httpResponseMessage, IWarsawApiMethod apiCall)
         {
-            throw new NotImplementedException();
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                return;
+            }
+            //TODO: throw more reasonable exception here:
+
+            throw new Exception("Something is wrong");
         }
 
         private HttpRequestMessage CreateHttpRequestMessage<TResult>(IWarsawApiMethod<TResult> apiCall)
@@ -60,7 +67,7 @@ namespace WarsawDengerousData.WarsawApi
                 Method = apiCall.Method
             };
 
-            httpRequestMessage.RequestUri = new Uri(apiCall.RequestUri, UriKind.Relative);
+            httpRequestMessage.RequestUri = new Uri(apiCall.RequestUri + "&apikey=" + _apiKey, UriKind.Relative);
 
             var apiMethodRequestContent = apiCall as IWarsawApiMethodBodyContent;
             if (apiMethodRequestContent?.BodyContent != null)

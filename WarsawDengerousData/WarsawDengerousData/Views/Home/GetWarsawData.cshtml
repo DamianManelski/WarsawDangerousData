@@ -1,0 +1,35 @@
+﻿@using WarsawDengerousData.Services.DataModels
+
+@{
+    ViewData["Title"] = "Click to get some data";
+    var items = (WarsawData)ViewBag.Message;
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Type a district name to get data of:</p>
+<table>
+    @foreach (var item in items.Result.Result.Notifications)
+    {
+        <tr>
+            <td>@item.Category</td>
+            <td>@item.City</td>
+            <td>@item.Subcategory</td>
+            <td>@item.District</td>
+            <td>@item.AparmentNumber</td>
+            <td>@item.Street2</td>
+            <td>@item.NotificationType</td>
+            <td>@item.CreateDate</td>
+            <td>@item.SiebelEventId</td>
+            <td>@item.Source Source</td>
+            <td>@item.YCoordOracle</td>
+            <td>@item.Street</td>
+            <td>@item.DeviceType</td>
+            <td>@item.Statuses</td>
+            <td>@item.XCoordOracle</td>
+            <td>@item.NotificationNumber</td>
+            <td>@item.YCoordWgs84</td>
+            <td>@item.Event</td>
+            <td>@item.XCoordWgs84</td>
+        </tr>
+    }
+</table>

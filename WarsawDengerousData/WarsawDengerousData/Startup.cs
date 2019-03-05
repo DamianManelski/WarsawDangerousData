@@ -42,12 +42,21 @@ namespace WarsawDengerousData
             var builder = new ContainerBuilder();
             builder.Populate(services);
 
-            builder.RegisterType<IWarsawApiGatewayFactory>().As<WarsawApiGatewayFactory>();
-            builder.RegisterType<IWarsawApiGateway>().As<WarsawApiGateway>();
-            builder.RegisterType<IWarsawDataService>().As<WarsawDataService>();
-            builder.RegisterType<IWarsawDataService>().As<WarsawDataService>();
+            builder.Register(GetWarsawApiGetewayFactory)
+                .As<IWarsawApiGatewayFactory>()
+                .SingleInstance();
+
+            builder.RegisterType<WarsawDataService>().As<IWarsawDataService>();
+
             ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(ApplicationContainer);
+        }
+
+        private static IWarsawApiGatewayFactory GetWarsawApiGetewayFactory(IComponentContext c)
+        {
+            var apiConfig = c.Resolve<IConfiguration>().GetSection("Api");
+            return new WarsawApiGatewayFactory(apiConfig["BaseUrl"],
+                apiConfig["ApiKey"], apiConfig["ResourceId"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
