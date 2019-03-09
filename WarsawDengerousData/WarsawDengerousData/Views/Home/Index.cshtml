@@ -2,7 +2,20 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to my programming skill demo</h1>
-    <p>Feel free to get some data using menu above.</p>
+<div class="white-center">
+    <h1 class="display-4 white">Welcome </h1>
+    <p>Enter your api key and district name to get data:</p>
+</div>
+<div class="container">
+    <form method="post" sp-controller="Home" asp-action="GetWarsawData">
+        <div class="form-group">
+            <label class="white-center" for="ApiKey">API key:</label>
+            <input type="password" class="form-control" id="apiKey" placeholder="Enter api key" name="ApiKey">
+        </div>
+        <div class="form-group">
+            <label class="white-center" for="DistrictName">Distric name:</label>
+            <input type="text" class="form-control" id="disctrictName" placeholder="Enter district name" name="DistrictName">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>

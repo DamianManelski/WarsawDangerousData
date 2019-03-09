@@ -1,35 +1,64 @@
-﻿@using WarsawDengerousData.Services.DataModels
-
-@{
+﻿@{
+    @using WarsawDengerousData.WarsawApiData
     ViewData["Title"] = "Click to get some data";
     var items = (WarsawData)ViewBag.Message;
 }
-<h1>@ViewData["Title"]</h1>
-
-<p>Type a district name to get data of:</p>
-<table>
-    @foreach (var item in items.Result.Result.Notifications)
-    {
-        <tr>
-            <td>@item.Category</td>
-            <td>@item.City</td>
-            <td>@item.Subcategory</td>
-            <td>@item.District</td>
-            <td>@item.AparmentNumber</td>
-            <td>@item.Street2</td>
-            <td>@item.NotificationType</td>
-            <td>@item.CreateDate</td>
-            <td>@item.SiebelEventId</td>
-            <td>@item.Source Source</td>
-            <td>@item.YCoordOracle</td>
-            <td>@item.Street</td>
-            <td>@item.DeviceType</td>
-            <td>@item.Statuses</td>
-            <td>@item.XCoordOracle</td>
-            <td>@item.NotificationNumber</td>
-            <td>@item.YCoordWgs84</td>
-            <td>@item.Event</td>
-            <td>@item.XCoordWgs84</td>
-        </tr>
-    }
-</table>
+<div>
+    <div class="table-responsive">
+        <table class="table tables-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Category</th>
+                    <th>City</th>
+                    <th>Subcategory</th>
+                    <th>District</th>
+                    <th>AparmentNumber</th>
+                    <th>Street2</th>
+                    <th>NotificationType</th>
+                    <th>CreateDate</th>
+                    <th>SiebelEventId</th>
+                    <th>Source Source</th>
+                    <th>YCoordOracle</th>
+                    <th>Street</th>
+                    <th>DeviceType</th>
+                    <th>Statuses</th>
+                    <th>XCoordOracle</th>
+                    <th>NotificationNumber</th>
+                    <th>YCoordWgs84</th>
+                    <th>Event</th>
+                    <th>XCoordWgs84</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int orderNumber = 0;}
+                @foreach (var item in items?.Result?.Result?.Notifications)
+                {
+                    <tr>
+                        <td>@orderNumber</td>
+                        <td>@item.Category</td>
+                        <td>@item.City</td>
+                        <td>@item.Subcategory</td>
+                        <td>@item.District</td>
+                        <td>@item.AparmentNumber</td>
+                        <td>@item.Street2</td>
+                        <td>@item.NotificationType</td>
+                        <td>@item.CreateDateFormatted</td>
+                        <td>@item.SiebelEventId</td>
+                        <td>@item.Source Source</td>
+                        <td>@item.YCoordOracle</td>
+                        <td>@item.Street</td>
+                        <td>@item.DeviceType</td>
+                        <td>@item.StatusesFormatted</td>
+                        <td>@item.XCoordOracle</td>
+                        <td>@item.NotificationNumber</td>
+                        <td>@item.YCoordWgs84</td>
+                        <td>@item.Event</td>
+                        <td>@item.XCoordWgs84</td>
+                    </tr>
+                    orderNumber++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 ﻿using System.Net.Http;
-using WarsawDengerousData.Services.DataModels;
+using WarsawDengerousData.WarsawApiData;
 
 namespace WarsawDengerousData.WarsawApi.Commands
 {

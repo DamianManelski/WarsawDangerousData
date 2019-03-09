@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
-using WarsawDengerousData.Services.DataModels;
+using WarsawDengerousData.Models;
 using WarsawDengerousData.WarsawApi;
 using WarsawDengerousData.WarsawApi.Commands;
+using WarsawDengerousData.WarsawApiData;
 
 namespace WarsawDengerousData.Services
 {
@@ -14,11 +15,11 @@ namespace WarsawDengerousData.Services
             _apiGatewayFactory = apiGatewayFactory;
         }
 
-        public async Task<WarsawData> GetIncydentForAsync(string districtName, string resourceId)
+        public async Task<WarsawData> GetIncydentForAsync(UserData userData, string resourceId)
         {
-            using (var apiGateway = _apiGatewayFactory.Create())
+            using (var apiGateway = _apiGatewayFactory.Create(userData.ApiKey))
             {
-                return await apiGateway.CallAsync(new GetNotificationDataForDistrict(districtName, resourceId));
+                return await apiGateway.CallAsync(new GetNotificationDataForDistrict(userData.DistrictName, resourceId));
             }
         }
     }

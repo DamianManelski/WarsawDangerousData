@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WarsawDengerousData.Exceptions;
-using WarsawDengerousData.Services;
+using WarsawDengerousData.WarsawApiData;
 
 namespace WarsawDengerousData.WarsawApi
 {
@@ -37,7 +37,8 @@ namespace WarsawDengerousData.WarsawApi
                     var responseContents = await httpResponse.Content.ReadAsStringAsync();
                     if (responseContents != null)
                     {
-                        return (TResult)WarsawDataSerializator.FromJson(responseContents);
+                        var resultObject = JsonConvert.DeserializeObject<WarsawData>(responseContents) as object;
+                        return (TResult)resultObject;
                     }
 
                     return default(TResult);
@@ -55,9 +56,10 @@ namespace WarsawDengerousData.WarsawApi
             {
                 return;
             }
-            //TODO: throw more reasonable exception here:
 
-            throw new Exception("Something is wrong");
+            throw new Exception($"Something is wrong. Warsaw data API status code: " +
+                $"{httpResponseMessage.StatusCode}," +
+                $" Reason: {httpResponseMessage.ReasonPhrase}");
         }
 
         private HttpRequestMessage CreateHttpRequestMessage<TResult>(IWarsawApiMethod<TResult> apiCall)

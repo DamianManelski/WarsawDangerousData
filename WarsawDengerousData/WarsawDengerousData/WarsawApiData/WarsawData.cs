@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using static WarsawDengerousData.Services.DataModels.Enums;
+using WarsawDengerousData.Helpers;
 
-namespace WarsawDengerousData.Services.DataModels
+namespace WarsawDengerousData.WarsawApiData
 {
     public partial class WarsawData
     {
@@ -33,16 +33,16 @@ namespace WarsawDengerousData.Services.DataModels
     public partial class Notification
     {
         [JsonProperty("category")]
-        public Category Category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("city")]
-        public City? City { get; set; }
+        public string City { get; set; }
 
         [JsonProperty("subcategory")]
-        public Subcategory Subcategory { get; set; }
+        public string Subcategory { get; set; }
 
         [JsonProperty("district")]
-        public District District { get; set; }
+        public string District { get; set; }
 
         [JsonProperty("aparmentNumber")]
         public object AparmentNumber { get; set; }
@@ -51,16 +51,18 @@ namespace WarsawDengerousData.Services.DataModels
         public string Street2 { get; set; }
 
         [JsonProperty("notificationType")]
-        public NotificationType NotificationType { get; set; }
+        public string NotificationType { get; set; }
 
         [JsonProperty("createDate")]
         public long CreateDate { get; set; }
+
+        public string CreateDateFormatted => DateTimeHelper.GetUtcTime(CreateDate);
 
         [JsonProperty("siebelEventId")]
         public string SiebelEventId { get; set; }
 
         [JsonProperty("source")]
-        public Source Source { get; set; }
+        public string Source { get; set; }
 
         [JsonProperty("yCoordOracle")]
         public double YCoordOracle { get; set; }
@@ -69,10 +71,12 @@ namespace WarsawDengerousData.Services.DataModels
         public string Street { get; set; }
 
         [JsonProperty("deviceType")]
-        public DeviceType DeviceType { get; set; }
+        public string DeviceType { get; set; }
 
         [JsonProperty("statuses")]
         public Status[] Statuses { get; set; }
+
+        public string StatusesFormatted => Status.GetStatusesAsString(Statuses);
 
         [JsonProperty("xCoordOracle")]
         public double XCoordOracle { get; set; }
@@ -88,17 +92,5 @@ namespace WarsawDengerousData.Services.DataModels
 
         [JsonProperty("xCoordWGS84")]
         public long XCoordWgs84 { get; set; }
-    }
-
-    public partial class Status
-    {
-        [JsonProperty("status")]
-        public string StatusStatus { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("changeDate")]
-        public long ChangeDate { get; set; }
     }
 }
