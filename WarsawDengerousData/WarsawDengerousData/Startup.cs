@@ -54,9 +54,9 @@ namespace WarsawDengerousData
 
         private static IWarsawApiGatewayFactory GetWarsawApiGetewayFactory(IComponentContext c)
         {
-            var apiConfig = c.Resolve<IConfiguration>().GetSection("Api");
+            var apiConfig = c.Resolve<IConfiguration>();
             return new WarsawApiGatewayFactory(apiConfig["BaseUrl"],
-                apiConfig["ApiKey"], apiConfig["ResourceId"]);
+                apiConfig["ApiKey"], apiConfig["DefaultResourceId"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

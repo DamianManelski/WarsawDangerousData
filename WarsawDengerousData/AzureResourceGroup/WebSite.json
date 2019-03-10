@@ -15,6 +15,14 @@
       "type": "string",
       "minLength": 1
     },
+    "environmentName": {
+      "type": "string",
+      "allowedValues": [
+        "test",
+        "prod",
+        "dev"
+      ]
+    },
     "skuName": {
       "type": "string",
       "defaultValue": "F1",
@@ -110,11 +118,13 @@
             "[resourceId('Microsoft.Web/sites', variables('webSiteName'))]"
           ],
           "tags": {
-            "displayName": "WarsawDangerousDataSettings"
+            "displayName": "WarsawDangerousDataSettings",
+            "ServiceOwner": "Perdica"
           },
           "properties": {
-            "key1": "value1",
-            "key2": "value2"
+            "DefaultResourceId": "28dc65ad-fff5-447b-99a3-95b71b4a7d1e",
+            "BaseUrl": "http://api.um.warszawa.pl/api/action/",
+            "ApiKey": "6e823fe2-46c9-4f44-9ac5-715ada5eca0e"
           }
         },
         {

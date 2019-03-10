@@ -3,7 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "hostingPlanName": {
-      "value": null
+      "value": "Free"
+    },
+    "WarsawDangerousDataDeployPackageFolder": {
+      "value": "WebApplication1"
+    },
+    "WarsawDangerousDataDeployPackageFileName": {
+      "value": "package.zip"
     }
   }
 }
