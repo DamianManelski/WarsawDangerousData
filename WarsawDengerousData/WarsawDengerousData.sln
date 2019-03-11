@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarsawDengerousData", "Wars
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AzureResourceGroup", "AzureResourceGroup\AzureResourceGroup.deployproj", "{7B11B150-2B77-4F5F-A9FD-6C0743BC77C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarsawDangerousData.Tests", "WarsawDangerousData.Tests\WarsawDangerousData.Tests.csproj", "{39176940-6A49-4DCD-B89A-EC9D3E3919C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7B11B150-2B77-4F5F-A9FD-6C0743BC77C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B11B150-2B77-4F5F-A9FD-6C0743BC77C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B11B150-2B77-4F5F-A9FD-6C0743BC77C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39176940-6A49-4DCD-B89A-EC9D3E3919C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39176940-6A49-4DCD-B89A-EC9D3E3919C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39176940-6A49-4DCD-B89A-EC9D3E3919C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39176940-6A49-4DCD-B89A-EC9D3E3919C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

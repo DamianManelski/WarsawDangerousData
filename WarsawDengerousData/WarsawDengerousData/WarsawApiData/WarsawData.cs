@@ -76,7 +76,7 @@ namespace WarsawDengerousData.WarsawApiData
         [JsonProperty("statuses")]
         public Status[] Statuses { get; set; }
 
-        public string StatusesFormatted => Status.GetStatusesAsString(Statuses);
+        public string StatusesFormatted => StatusHelper.GetStatusesAsString(Statuses);
 
         [JsonProperty("xCoordOracle")]
         public double XCoordOracle { get; set; }

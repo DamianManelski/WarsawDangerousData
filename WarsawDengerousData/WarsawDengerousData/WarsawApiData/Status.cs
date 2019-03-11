@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Text;
-using WarsawDengerousData.Helpers;
 
 namespace WarsawDengerousData.WarsawApiData
 {
@@ -14,17 +12,5 @@ namespace WarsawDengerousData.WarsawApiData
 
         [JsonProperty("changeDate")]
         public long ChangeDate { get; set; }
-
-        public static string GetStatusesAsString(Status[] statuses)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var status in statuses)
-            {
-                sb.AppendLine($"Status:{status.StatusStatus}, " +
-                    $"Description:{status.Description}, " +
-                    $"ChangeDate: {DateTimeHelper.GetUtcTime(status.ChangeDate)}");
-            }
-            return sb.ToString();
-        }
     }
 }

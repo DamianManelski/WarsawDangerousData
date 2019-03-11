@@ -1,4 +1,5 @@
 ﻿using System;
+using WarsawDengerousData.Exceptions;
 
 namespace WarsawDengerousData.Helpers
 {
@@ -6,8 +7,15 @@ namespace WarsawDengerousData.Helpers
     {
         public static string GetUtcTime(long unixDateTime)
         {
-            var dtOffset = DateTimeOffset.FromUnixTimeMilliseconds(unixDateTime);
-            return dtOffset.UtcDateTime.ToString();
+            try
+            {
+                var dtOffset = DateTimeOffset.FromUnixTimeMilliseconds(unixDateTime);
+                return dtOffset.UtcDateTime.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new DateTimeHelperException($"Cannot parse unix date time: {unixDateTime}", ex);
+            }
         }
     }
 }
